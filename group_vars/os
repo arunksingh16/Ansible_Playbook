@@ -1,0 +1,4 @@
+supported_os:
+  - RedHat
+  - Ubuntu
+  - Fedore

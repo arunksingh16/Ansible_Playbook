@@ -1,0 +1,11 @@
+[webserver]
+worker
+
+[appserver]
+worker
+
+[dbserver]
+worker
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3

@@ -1,0 +1,42 @@
+- name: Create User-Playbook
+  hosts: webserver
+  vars_files:
+  - group_vars/servers
+  - secret_file
+  vars: 
+    uname: 
+      u_name: test
+      description: variable in pipeline
+    supported_os: 
+      - Ubuntu
+      - RedHat
+  tasks: 
+    - name: User Create 1
+      user: 
+        name: "{{ username }}"
+        state: present
+
+    - name: User Create 2
+      user:
+        name: "{{ uname['u_name'] }}"
+        password: "{{ secret_file }}"
+        state: present
+
+    - name: SecretData
+      include_vars: secret_file
+
+    - name: Display all facts
+      debug:
+        var: ansible_facts
+ 
+    - name: Install ntp
+      yum:
+        name: ntp
+        state: present
+      when: ansible_facts['distribution'] in supported_os 
+      tags: ntp
+      notify: Reboot System
+
+  handlers: 
+    - name: Reboot System
+      reboot: 
