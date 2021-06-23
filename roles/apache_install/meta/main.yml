@@ -1,0 +1,14 @@
+allow_duplicates: yes
+
+galaxy_info:
+  author: Arun K Singh
+  description: Apache for Linux
+  min_ansible_version: 2.5.0
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  - galaxy_tags:
+    - apache
+    - webserver
+dependencies: []
